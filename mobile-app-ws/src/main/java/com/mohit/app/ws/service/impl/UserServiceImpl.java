@@ -17,6 +17,7 @@ import com.mohit.app.ws.service.UserService;
 import com.mohit.app.ws.shared.Utils;
 import com.mohit.app.ws.shared.dto.AddressDto;
 import com.mohit.app.ws.shared.dto.UserDto;
+import com.mohit.app.ws.ui.model.response.ErrorMessages;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -31,10 +32,10 @@ public class UserServiceImpl implements UserService{
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Override
-	public UserDto createUser(UserDto user) {
+	public UserDto createUser(UserDto user) throws Exception{
 
 		if(userRepository.findByEmail(user.getEmail()) != null)
-			throw new RuntimeException("Record Already Exists");
+			throw new Exception(ErrorMessages.RECORD_ALREADY_EXISTS.getErrorMessage());
 		
 		for(int i=0;i<user.getAddresses().size();i++) {
 			AddressDto address = user.getAddresses().get(i);
