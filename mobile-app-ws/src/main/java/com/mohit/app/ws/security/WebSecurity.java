@@ -23,9 +23,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure (HttpSecurity http) throws Exception{
-		http.csrf().disable().authorizeRequests()
-		.antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
-		.permitAll()
+		
+		System.out.println("configure http called");
+		http.csrf()
+		.disable().authorizeRequests()
+		//.antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL,"/actuator/health")
+		//.antMatchers(SecurityConstants.SIGN_UP_URL,"/actuator/health")
+		//.permitAll()
+		//;/*
 		.anyRequest().authenticated().and().addFilter(getAuthenticationFilter())
 		.addFilter(new AuthorizationFilter(authenticationManager()))
 		.sessionManagement()
@@ -34,6 +39,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception{
+		System.out.println("configure auth called");
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
 	}
 	
