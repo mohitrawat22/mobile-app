@@ -1,0 +1,49 @@
+The project has two entities Users and Addresses which has parent child relationship.
+A user can have many addresses.
+
+Security is enabled on the project.
+
+First you need to go to URL http://localhost:8005/users/login and provide existing email and password in JSON format.
+It will provide authorization header which then will be used carry on different operations on the project.
+
+GET
+====
+To get the User, you need to go to URL http://localhost:8005/users/{userId} 
+and provide authorization header provided in previous step.
+It will provide the information of the user.
+
+POST
+=====
+To post a new user, you need to go to http://localhost:8005/users/
+Provide the user information in JSON.
+For example:
+{
+    "firstName": "Mohit",
+    "lastName": "Rawat",
+    "email": "test1@test.com",
+    "password": "1234",
+    "addresses": [
+    	{
+    		"city": "Hyderabad",
+    		"country": "India",
+    		"streetName": "Kondapur",
+    		"postalCode": "500084",
+    		"type": "shipping"
+    	},
+    	{
+    		"city": "Hyderabad",
+    		"country": "India",
+    		"streetName": "Kondapur",
+    		"postalCode": "500084",
+    		"type": "billing"
+    	}
+    ]
+}
+
+PUT
+====
+To edit the user go to URL: http://localhost:8005/users/{userId}, provide the body and send it.
+
+DELETE
+=======
+To delete the user go to URL: http://localhost:8005/users/{userId} and send it.

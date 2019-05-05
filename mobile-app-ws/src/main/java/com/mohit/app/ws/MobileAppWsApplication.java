@@ -7,6 +7,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.mohit.app.ws.security.AppProperties;
 
+/*
+ * Main class to run spring boot application
+ */
 @SpringBootApplication(scanBasePackages= {"com.mohit.app.ws"})
 public class MobileAppWsApplication {
 
@@ -14,6 +17,9 @@ public class MobileAppWsApplication {
 		SpringApplication.run(MobileAppWsApplication.class, args);
 	}
 	
+	/*
+	 * To encrypt the user password
+	 */
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();

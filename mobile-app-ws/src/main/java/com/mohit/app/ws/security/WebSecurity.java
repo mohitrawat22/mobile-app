@@ -21,16 +21,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 	
+	/*
+	 * Apply security to every user except POST /users/ URL
+	 */
 	@Override
-	protected void configure (HttpSecurity http) throws Exception{
-		
+	protected void configure (HttpSecurity http) throws Exception{	
 		System.out.println("configure http called");
 		http.csrf()
 		.disable().authorizeRequests()
-		//.antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL,"/actuator/health")
-		//.antMatchers(SecurityConstants.SIGN_UP_URL,"/actuator/health")
-		//.permitAll()
-		//;/*
+		.antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
+		.permitAll()
 		.anyRequest().authenticated().and().addFilter(getAuthenticationFilter())
 		.addFilter(new AuthorizationFilter(authenticationManager()))
 		.sessionManagement()

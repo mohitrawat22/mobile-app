@@ -36,6 +36,9 @@ public class UserController {
 	@Autowired
 	AddressService addressService;
 	
+	/*
+	 * Get users based on user id
+	 */
 	@GetMapping(path="/{userId}" , produces = {MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE})
 	public UserRest getUser(@PathVariable String userId) {
 		UserRest returnValue = new UserRest();
@@ -45,6 +48,9 @@ public class UserController {
 		return returnValue;
 	}
 	
+	/*
+	 * Get users and addresses based on user id
+	 */
 	@GetMapping(path="/{userId}/addresses" , produces = {MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE})
 	public List<AddressRest> getAddresses(@PathVariable String userId) throws Exception {
 		List<AddressRest> returnValue = new ArrayList<AddressRest>();
@@ -61,6 +67,9 @@ public class UserController {
 		return returnValue;
 	}
 	
+	/*
+	 * Post users
+	 */
 	@PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE} , 
 					consumes = {MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE})
 	public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails) throws Exception{
@@ -78,6 +87,9 @@ public class UserController {
 		return returnValue;
 	}
 	
+	/*
+	 * Update users based on user id
+	 */
 	@PutMapping(path="/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE} , 
 			consumes = {MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE})
 	public UserRest updateUser(@RequestBody UserDetailsRequestModel userDetails, @PathVariable String userId) {
@@ -92,6 +104,9 @@ public class UserController {
 		return returnValue;
 	}
 	
+	/*
+	 * Delete users based on user id
+	 */
 	@DeleteMapping(path="/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE} , 
 			consumes = {MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE})
 	public void deleteUser(@PathVariable String userId) {
